@@ -1,0 +1,1 @@
+aws s3 mb s3://some-bucket-of-mine-01042021 --region us-east-2

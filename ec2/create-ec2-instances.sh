@@ -13,12 +13,11 @@ aws ec2 run-instances \
 
 #Run a clean EC2 instance as a pre-req to a Spring Boot App
 aws ec2 run-instances \
---image-id ami-025167d5d70fe5137 \
+--image-id ami-002068ed284fb165b \
 --count 1 \
---instance-type t2.micro\
+--instance-type t2.micro \
 --key-name tj-devlab-key-pair-001 \
 --security-group-ids sg-0d94ae1405bd3ed8b \
---user-data
---subnet-id \
---tag-specifications \
-'ResourceType=instance,Tags=[{foo, bar}]'
+--associate-public-ip-address \
+--user-data file:///Users/tjohander/splunk/projects/aws-one-liners/user-data-scripts/install-java-11-and-systemd-app-service.sh \
+--tag-specifications 'ResourceType=instance,Tags=[{Key=application,Value=Spring-Pet-Clinic}]'

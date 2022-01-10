@@ -9,3 +9,13 @@
 #!/bin/bash
 yum update -y
 amazon-linux-extras install java-openjdk11 -y
+cat >/etc/systemd/system/spring-pet-clinic.service <<EOL
+[Unit]
+Description=webserver Daemon
+
+[Service]
+ExecStart= /usr/bin/java -jar /home/ec2-user/spring=pet-clinic/spring-petclinic-2.4.5.jar
+
+[Install]
+WantedBy=multi-user.target
+EOL
