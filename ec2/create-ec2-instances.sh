@@ -11,7 +11,7 @@ aws ec2 run-instances \
 --tag-specifications \
 'ResourceType=instance,Tags=[{application, Spring-Pet-Clinic}]'
 
-#Run a clean EC2 instance as a pre-req to a Spring Boot App
+# Run a clean EC2 instance as a pre-req to a Spring Boot App
 aws ec2 run-instances \
 --image-id ami-002068ed284fb165b \
 --count 1 \
@@ -19,5 +19,5 @@ aws ec2 run-instances \
 --key-name tj-devlab-key-pair-001 \
 --security-group-ids sg-0d94ae1405bd3ed8b \
 --associate-public-ip-address \
---user-data file:///Users/tjohander/splunk/projects/aws-one-liners/user-data-scripts/install-java-11-and-systemd-app-service.sh \
+--user-data $(curl https://raw.githubusercontent.com/tjohander-splunk/aws-one-liners/main/user-data-scripts/spring-boot-app-server.sh | base64) \
 --tag-specifications 'ResourceType=instance,Tags=[{Key=application,Value=Spring-Pet-Clinic}]'
